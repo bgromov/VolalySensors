@@ -26,8 +26,8 @@ public extension Volaly {
         public var transform: Transform
 
         public init(updateInterval: TimeInterval = 0.05 /* 20 Hz */) {
-            motionQueue = OperationQueue()
-            motionQueue.maxConcurrentOperationCount = 1
+            motionQueue = OperationQueue.main
+            //motionQueue.maxConcurrentOperationCount = 1
 
             self.transform = Transform.identity
 
