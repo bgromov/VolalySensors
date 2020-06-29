@@ -13,14 +13,14 @@ import Combine
 
 import Transform
 
-extension Volaly {
+public extension Volaly {
     // Inspired by https://stackoverflow.com/a/58368793/13647455
-    public class Vo: NSObject, ObservableObject, ARSessionDelegate {
+    class Vo: NSObject, ObservableObject, ARSessionDelegate {
         private let arSession: ARSession
         private let arConfig: ARWorldTrackingConfiguration
 
         private var lastTrackingState: ARCamera.TrackingState = .notAvailable
-        var originAdjusted: Bool = false
+        private var originAdjusted: Bool = false
 
         private let appleToRosTf: Transform = Transform(simd_quatd(pitch: .pi/2, yaw: .pi/2))
 
@@ -61,7 +61,7 @@ extension Volaly {
                 }
         }
 
-        internal func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        public func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
             if case .limited(.initializing) = lastTrackingState {
                 originAdjusted = false
             }

@@ -12,9 +12,9 @@ import simd
 
 import Transform
 
-extension Volaly {
+public extension Volaly {
     // Inspired by https://stackoverflow.com/a/58368793/13647455
-    public class Imu: ObservableObject {
+    class Imu: ObservableObject {
         private let motionQueue: OperationQueue
         private let motionManager = CMMotionManager()
 
