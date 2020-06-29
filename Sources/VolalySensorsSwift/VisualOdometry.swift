@@ -75,8 +75,7 @@ public extension Volaly {
 
             if case .limited(_) = camera.trackingState {
                 if originAdjusted {
-    //                AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate){}
-//                    notificationGenerator.notificationOccurred(.error)
+                    //notificationGenerator.notificationOccurred(.error)
                 }
             }
 
