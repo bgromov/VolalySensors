@@ -57,7 +57,8 @@ public extension Volaly {
                 .sink { _ in
                     guard let cam = self.arSession.currentFrame?.camera else { return }
 
-                    self.transform = Transform(simd_double4x4(cam.transform))
+                    let camTf = Transform(simd_double4x4(cam.transform))
+                    self.transform = camTf * Transform(simd_quatd(yaw: .pi))
                 }
         }
 
