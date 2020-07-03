@@ -16,8 +16,8 @@ import Transform
 public extension Volaly {
     // Inspired by https://stackoverflow.com/a/58368793/13647455
     class Vo: NSObject, ObservableObject, ARSessionDelegate {
-        private let arSession: ARSession
-        private let arConfig: ARWorldTrackingConfiguration
+        public let arSession: ARSession
+        public let arConfig: ARWorldTrackingConfiguration
 
         private var lastTrackingState: ARCamera.TrackingState = .notAvailable
         private var originAdjusted: Bool = false
