@@ -35,7 +35,11 @@ public extension Volaly {
 
             arConfig = ARWorldTrackingConfiguration()
             arConfig.worldAlignment = .gravity
-            arConfig.isAutoFocusEnabled = true
+
+            // This option makes simulator crash
+            #if !targetEnvironment(simulator)
+                arConfig.isAutoFocusEnabled = true
+            #endif
 
             arSession = ARSession()
 
