@@ -27,6 +27,8 @@ public extension Volaly {
         private let timerPublisher: Timer.TimerPublisher
         private var cancellable: AnyCancellable
 
+        private let notificationGenerator = UINotificationFeedbackGenerator()
+
         @Published
         public var transform: Transform
 
@@ -80,7 +82,7 @@ public extension Volaly {
 
             if case .limited(_) = camera.trackingState {
                 if originAdjusted {
-                    //notificationGenerator.notificationOccurred(.error)
+                    notificationGenerator.notificationOccurred(.error)
                 }
             }
 
