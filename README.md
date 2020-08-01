@@ -1,3 +1,3 @@
-# VolalySensorsSwift
+# VolalySensors
 
-A description of this package.
+A Swift package wrapping iPhone sensors into Combine publishers.

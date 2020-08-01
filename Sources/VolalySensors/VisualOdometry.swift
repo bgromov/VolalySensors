@@ -1,6 +1,6 @@
 //
-//  VisualOdometry-iOS.swift
-//  VolalySensorsSwift
+//  VisualOdometry.swift
+//  VolalySensors
 //
 //  Created by Boris Gromov on 29.06.2020.
 //  

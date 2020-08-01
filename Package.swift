@@ -4,17 +4,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "VolalySensorsSwift",
+    name: "VolalySensors",
     platforms: [.iOS(.v13)],
     products: [
-        .library(name: "VolalySensorsSwift", targets: ["VolalySensorsSwift"]),
+        .library(name: "VolalySensors", targets: ["VolalySensors"]),
     ],
     dependencies: [
         .package(url: "https://github.com/bgromov/TransformSwift", from: "0.1.0"),
     ],
     targets: [
         .target(
-            name: "VolalySensorsSwift",
+            name: "VolalySensors",
             dependencies: [.product(name: "Transform", package: "TransformSwift")]),
     ]
 )
