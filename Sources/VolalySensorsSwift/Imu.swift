@@ -12,35 +12,33 @@ import simd
 
 import Transform
 
-public extension Volaly {
-    // Inspired by https://stackoverflow.com/a/58368793/13647455
-    class Imu: ObservableObject {
-        private let motionQueue: OperationQueue
-        private let motionManager = CMMotionManager()
+// Inspired by https://stackoverflow.com/a/58368793/13647455
+public class PhoneImu: ObservableObject {
+    private let motionQueue: OperationQueue
+    private let motionManager = CMMotionManager()
 
-        private func transformFromAppleInertial(roll: Double, pitch: Double, yaw: Double) -> Transform {
-            return Transform(simd_quatd(roll: roll, pitch: -pitch, yaw: yaw))
-        }
+    private func transformFromAppleInertial(roll: Double, pitch: Double, yaw: Double) -> Transform {
+        return Transform(simd_quatd(roll: roll, pitch: -pitch, yaw: yaw))
+    }
 
-        @Published
-        public var transform: Transform
+    @Published
+    public var transform: Transform
 
-        public init(updateInterval: TimeInterval = 0.05 /* 20 Hz */) {
-            motionQueue = OperationQueue.main
-            //motionQueue.maxConcurrentOperationCount = 1
+    public init(updateInterval: TimeInterval = 0.05 /* 20 Hz */) {
+        motionQueue = OperationQueue.main
+        //motionQueue.maxConcurrentOperationCount = 1
 
-            self.transform = Transform.identity
+        self.transform = Transform.identity
 
-            motionManager.deviceMotionUpdateInterval = updateInterval
-            motionManager.startDeviceMotionUpdates(to: motionQueue) { (motionData: CMDeviceMotion!, error) in
-                guard error == nil else {
-                    print("CoreMotion error:", error!)
-                    return
-                }
-
-                let (roll, pitch, yaw) = (motionData.attitude.roll, motionData.attitude.pitch, motionData.attitude.yaw)
-                self.transform = self.transformFromAppleInertial(roll: roll, pitch: pitch, yaw: yaw)
+        motionManager.deviceMotionUpdateInterval = updateInterval
+        motionManager.startDeviceMotionUpdates(to: motionQueue) { (motionData: CMDeviceMotion!, error) in
+            guard error == nil else {
+                print("CoreMotion error:", error!)
+                return
             }
+
+            let (roll, pitch, yaw) = (motionData.attitude.roll, motionData.attitude.pitch, motionData.attitude.yaw)
+            self.transform = self.transformFromAppleInertial(roll: roll, pitch: pitch, yaw: yaw)
         }
     }
 }
